@@ -1,0 +1,39 @@
+#Viaje
+# Tienes $600 pesos, y un coche que que viaja a una velocidad constante de de 50km/hora y tiene el tanque sin gasolina.
+# ¿Qué distancia recorrerás con ese dinero? ¿En cuánto tiempo recorrerás esa distancia?
+# La distancia tiene que estar expresada en kilómetros, y el tiempo en minutos y segundos.
+# El precio no debe omitirse.
+# El precio debe ser un número.
+# El precio debe ser mayor a cero.
+# El programa no deja de preguntar el precio, sino hasta que
+# está correcto.
+# Me debe mostrar errores específicos (error, causa, acción).
+def calcular_viaje(precio_gasolina_litro=20.0):
+    while True:
+        try:
+            precio_gasolina = float(input("Ingrese el precio de la gasolina por litro en pesos: "))
+            if precio_gasolina <= 0:
+                raise ValueError("El precio debe ser mayor a cero.")
+            break
+        except ValueError as ve:
+            print(f"Error: {ve}. Por favor, ingrese un precio válido.")
+
+    dinero_disponible = 600
+    velocidad_coche_kmh = 50
+
+    # Calcular la distancia que se puede recorrer con el dinero dado el precio de la gasolina
+    distancia_recorrida_km = dinero_disponible / precio_gasolina_litro
+
+    # Calcular el tiempo en horas
+    tiempo_horas = distancia_recorrida_km / velocidad_coche_kmh
+
+    # Convertir el tiempo a minutos y segundos
+    tiempo_minutos, tiempo_segundos = divmod(tiempo_horas * 60 * 60, 60)
+
+    # Mostrar los resultados
+    print("\nResultados del viaje:")
+    print(f"Distancia recorrida: {distancia_recorrida_km:.2f} km")
+    print(f"Tiempo estimado: {int(tiempo_minutos)} minutos y {int(tiempo_segundos)} segundos")
+
+if __name__ == "__main__":
+    calcular_viaje()
